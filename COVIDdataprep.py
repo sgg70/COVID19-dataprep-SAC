@@ -32,8 +32,6 @@ import urllib.request
 import datetime
 ### technically, the other imports should also all be here and not in the functions defs, being lazy for now
 
-# test
-
 def load_continent_latlon():
     load_saved = 'continentslatlon.csv'
     ContinentlatlonDict = dict()
