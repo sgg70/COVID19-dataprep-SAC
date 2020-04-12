@@ -2,6 +2,8 @@
 
 Simple Python script to read COVID-19 data and some related information from various sources and prepare data for downstream use.
 
+**_main file: COVIDdataprep.py_** 
+
 (Missing in this repository is the json file that contains the authorization for the GDRive / GSheets API)
 
 We are using here normalized and cleansed data from
