@@ -513,7 +513,7 @@ if __name__ == '__main__':
     produce_covidfile()
     produce_doubling_rate()    # needs covidfile output csv first
     produce_day_of_100_compare()
-    more details for some countries
+    ## more details for some countries
     produce_us_counties()
     produce_de_laender()
     ## optional extras
