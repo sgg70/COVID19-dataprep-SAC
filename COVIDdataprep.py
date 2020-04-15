@@ -353,13 +353,13 @@ def produce_doubling_rate():
     ## now to google
     move_stuff_to_google_sheets(df=df_unpivoted, spreadsheet_key='1mlBxqhBC9fCAsBuJ8Dtn1mJS-B89X2ulX5Wrgpyya10', wks_name='COVID19doubling',
                                 text='COVID19doubling', row_names=False)
-    move_stuff_to_google_sheets(df=df_unpivotedg,spreadsheet_key='1mlBxqhBC9fCAsBuJ8Dtn1mJS-B89X2ulX5Wrgpyya10', wks_name='COVID19growth',
-                                text='COVID19growth', row_names=False)
+    move_stuff_to_google_sheets(df=df_unpivotedg,spreadsheet_key='1S8LM5OhFBnf6w-X-w0S-OJsEtqlv_DeuBBfsGTagEtI', wks_name='COVID19growth',
+                                 text='COVID19growth', row_names=False)
 
     move_stuff_to_google_sheets(df=df_unpivotedd, spreadsheet_key='1mlBxqhBC9fCAsBuJ8Dtn1mJS-B89X2ulX5Wrgpyya10', wks_name='COVID19doubling_deaths',
                                 text='COVID19doubling-Deaths', row_names=False)
-    move_stuff_to_google_sheets(df=df_unpivotedgd,spreadsheet_key='1mlBxqhBC9fCAsBuJ8Dtn1mJS-B89X2ulX5Wrgpyya10', wks_name='COVID19growth_deaths',
-                                text='COVID19growth-Deaths', row_names=False)
+    move_stuff_to_google_sheets(df=df_unpivotedgd,spreadsheet_key='1S8LM5OhFBnf6w-X-w0S-OJsEtqlv_DeuBBfsGTagEtI', wks_name='COVID19growth_deaths',
+                                 text='COVID19growth-Deaths', row_names=False)
 
 def produce_us_counties():
     url='https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv'
