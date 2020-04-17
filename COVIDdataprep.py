@@ -361,7 +361,8 @@ def produce_doubling_rate():
     move_stuff_to_google_sheets(df=df_unpivotedgd,spreadsheet_key='1S8LM5OhFBnf6w-X-w0S-OJsEtqlv_DeuBBfsGTagEtI', wks_name='COVID19growth_deaths',
                                  text='COVID19growth-Deaths', row_names=False)
 
-def produce_us_counties():
+def produce_us_counties(): ## obsolete
+    # obsolete, as we get our data now the other way
     url='https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv'
     # from nytimes ,https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html#g-us-map
     print("READING DATA...")
@@ -371,6 +372,26 @@ def produce_us_counties():
     ## now to google
 
     move_stuff_to_google_sheets(df=df_usc,spreadsheet_key='1Egz51XT2P7tclI00CQmGDsBwT_OC8-Ljf7ggwReDA_k', wks_name='COVID19us_counties',
+                                text='COVID19us_counties', row_names=False)
+
+def produce_us_counties2():
+    url='https://raw.githubusercontent.com/datasets/covid-19/master/data/us_confirmed.csv'
+    print("READING DATA...")
+    df_uscc = pandas.read_csv(url)
+    url = 'https://raw.githubusercontent.com/datasets/covid-19/master/data/us_deaths.csv'
+    df_uscd = pandas.read_csv(url)
+    df_uscc.drop(['UID','iso3','code3','FIPS','Admin2','Country/Region','Province/State'],axis=1, inplace= True)
+    df_uscd.drop(['UID', 'iso2','iso3', 'code3', 'FIPS', 'Admin2', 'Lat', 'Population', 'Long', 'Country/Region','Province/State'], axis=1, inplace=True)
+    df_uscc.rename(columns={'Case': 'Confirmed'},inplace=True)
+    df_uscd.rename(columns={'Case': 'Deaths'},inplace=True)
+    print("READING DATA - DONE")
+    df_us_combined=pandas.merge(df_uscc, df_uscd, on=['Combined_Key', 'Date'])
+    df_us_combined=df_us_combined[['Date','iso2','Combined_Key','Lat','Long','Confirmed','Deaths']]
+    df_us_combined['Active']=df_us_combined['Confirmed']-df_us_combined['Deaths']
+    print(df_us_combined)
+    ## now to google
+    ## if google throws the 5000000 cells in workbook error: delete superfluous columns in the empty sheet first!!
+    move_stuff_to_google_sheets(df=df_us_combined,spreadsheet_key='1Egz51XT2P7tclI00CQmGDsBwT_OC8-Ljf7ggwReDA_k', wks_name='COVID19us_counties',
                                 text='COVID19us_counties', row_names=False)
 
 def produce_de_laender():
@@ -513,13 +534,12 @@ if __name__ == '__main__':
     produce_covidfile()
     produce_doubling_rate()    # needs covidfile output csv first
     produce_day_of_100_compare()
-    ## more details for some countries
-    produce_us_counties()
+    # more details for some countries
+    produce_us_counties2()   # don't run this every day...
     produce_de_laender()
     ## optional extras
     produce_covidflights()
     produce_covid30daygtrends()
-
 
     now = datetime.datetime.now()
     print("******     THE     END      ***** ",now.strftime("%Y-%m-%d %H:%M:%S"))
