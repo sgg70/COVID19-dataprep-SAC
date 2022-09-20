@@ -79,7 +79,7 @@ tabulator==1.36.0
 tornado==6.0.4
 unicodecsv==0.14.1
 uritemplate==3.0.1
-urllib3==1.25.8
+urllib3==1.26.5
 wincertstore==0.2
 xlrd==1.2.0
 zipp==3.1.0
